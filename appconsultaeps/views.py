@@ -4,7 +4,7 @@ from django.views.generic import FormView
 from django.urls import reverse_lazy
 
 #Forms
-from .forms import PacienteForm
+from .forms import *
 
 from .models import *
 
@@ -15,12 +15,11 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .Forms import CitasView
 
 class CrearCitas(CreateView):
     Model = 'Citas'
-    template_name = 'SenaSoftPython/Citas.html'
-    form_class=CitasView
+    template_name = 'appconsultaeps/Citas.html'
+    form_class=CitasForm
 
 
 class PacienteCreate(FormView):
