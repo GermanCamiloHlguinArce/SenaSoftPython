@@ -8,9 +8,9 @@ class tipo_doc (models.Model):
 
 class pacientes(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='paciente')
-    edad=models.IntegerField(max_length=10,null=False,blank=False)
-    peso=models.IntegerField(max_length=10,null=False,blank=False)
-    estatura=models.IntegerField(max_length=10,null=False,blank=False)
+    edad=models.PositiveIntegerField()
+    peso=models.PositiveIntegerField()
+    estatura=models.PositiveIntegerField()
     estado_civil=models.CharField(max_length=45, null=False,blank=False)
     tipo_doc=models.ForeignKey(tipo_doc, on_delete=models.CASCADE)
 
@@ -30,8 +30,8 @@ class especialista(models.Model):
 
 class medico(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='medico')
-    Numero_doc=models.IntegerField(max_length=10)
-    telefono=models.IntegerField(max_length=10)
+    Numero_doc=models.PositiveIntegerField()
+    telefono=models.PositiveIntegerField()
     tipo_doc = models.ForeignKey(tipo_doc, on_delete=models.CASCADE)
     especialista=models.ForeignKey(especialista,on_delete=models.CASCADE)
 
@@ -47,7 +47,3 @@ class grupo_familiar(models.Model):
     parentesco=models.CharField(max_length=50,null=False,blank=False)
     pacientes=models.ForeignKey(pacientes,on_delete=models.CASCADE)
     medico=models.ForeignKey(medico,on_delete=models.CASCADE)
-
-
-
-
