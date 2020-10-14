@@ -23,4 +23,5 @@ class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'index.html'
 
     
-
+class CrearCitas(TemplateView):
+    template_name = 'SenaSoftPython/Citas.html'
