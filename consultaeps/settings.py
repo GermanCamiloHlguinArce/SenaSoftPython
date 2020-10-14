@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'consultaeps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'prueba',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'ec2-52-21-37-108.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
