@@ -17,7 +17,7 @@ from .Forms import PacienteForm
 
 
 from django.contrib.auth.views import LoginView
-from django.views.generic import TemplateView,CreateView,ListView
+from django.views.generic import TemplateView,CreateView,ListView,UpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
@@ -60,3 +60,9 @@ class ListarHistoria(ListView):
     model = historia_clinica
     template_name = 'appconsultaeps/listar_historia.html'
     context_object_name = 'historias'
+
+class ActualizarHistoria(UpdateView):
+	model=historia_clinica
+	template_name='appconsultaeps/historia.html'
+	form_class= HistoriaForm
+	success_url= reverse_lazy('appconsultaeps:listar_historia')

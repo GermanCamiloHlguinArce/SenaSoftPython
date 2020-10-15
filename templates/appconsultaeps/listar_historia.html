@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>HOME - MEDICINA DIGITAL</title>
+  <title>HISTORIAL CLINICO- MEDICINA DIGITAL</title>
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -55,7 +55,7 @@
 			<th scope="col">enfermedades actuales</th>
 			<th scope="col">antecedentes</th>
 			<th scope="col">analisis</th>
-            <th scope="col">plan_manejo</th>
+            <th scope="col">plan de manejo</th>
             <th scope="col">operaciones</th>
 		</tr>
 	</thead>
@@ -70,11 +70,12 @@
             <td>{{historia.analisis}}</td>
             <td>{{historia.plan_manejo}}</td>
 			<td>
-				<a href=""><button type="button" class="btn btn-primary">editar</button> </a>
+			<button onclick="abrir_modal_edicion('{%url 'appconsultaeps:editar_historia' historia.id%}')" type="button" class="btn btn-primary">editar</button>
 				
 			</td>
 		</tr>
 		{%endfor%}
+
 	</tbody>
 
 </table>
@@ -82,12 +83,9 @@
           <h1>No existe historial</h1>
 {%endif%}
 
+<div class="modal fade" id="edicion" role="dialog">
 
-
-
-
-
-
+</div>
           {% endblock content %}
         </div>
         <!-- /.container-fluid -->
@@ -127,6 +125,14 @@
   <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
   <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
   {% block js %}
+  <script type="text/javascript">
+      var $=Jquery.noConflict();
+      function abrir_modal_edition(url){
+        $('#edicion').load(url, function(){
+            $(this).modal.show();
+            });
+
+  </script>
   {% endblock js %}
 
 </body>
