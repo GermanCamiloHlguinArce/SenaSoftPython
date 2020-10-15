@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login</title>
+  <title>Registro usuario</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -28,45 +29,32 @@
     <!-- Outer Row -->
     <div class="row justify-content-center">
 
-      <div class="col-xl-10 col-lg-12 col-md-9">
-
+      <div class="col-xl-10 col-lg-8 col-md-9">
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-              <div class="col-lg-6">
+              <div class="col-lg-8 offset-lg-2">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
-                    {% if form.non_field_errors  %}
-                        {% for error in form.non_field_errors %}
-                            <span class="text-danger">{{ error|escape }}</span>
-                        {% endfor %}
-                    {% endif %}
+                    <h1 class="h4 text-gray-900 mb-4">Registro Usuario</h1>
                   </div>
                   <form class="user" method="POST">
                     {% csrf_token %}
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user rounded-0" id="exampleInputEmail" aria-describedby="emailHelp" name="username" placeholder="Ingrese su correo o nombre de usuario" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user rounded-0" id="exampleInputPassword" name="password" placeholder="Ingrese su contraseña" required>
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input rounded-0" id="customCheck">
-                        <label class="custom-control-label rounded-0" for="customCheck">Recordarme</label>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block rounded-0">Login</button>
+                    {% for field in form %}
+                        {{ field|as_crispy_field }}<br>
+                        {% if field.errors  %}
+                          {% for error in field.errors %}
+                              {{ error|escape }}
+                          {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-primary btn-block rounded-0">Enviar</button>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Olvide mi contraseña</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="{% url 'usuario_create' %}">Crear una cuenta!</a>
+                    <a class="small" href="{% url 'login' %}">Volver</a>
                   </div>
                 </div>
               </div>

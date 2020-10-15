@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 
 class tipo_doc (models.Model):
@@ -13,6 +14,7 @@ class pacientes(models.Model):
     estatura=models.PositiveIntegerField()
     estado_civil=models.CharField(max_length=45, null=False,blank=False)
     tipo_doc=models.ForeignKey(tipo_doc, on_delete=models.CASCADE)
+    
 
 class historia_clinica(models.Model):
     incapacidad=models.CharField(max_length=50,null=True,blank=True)
@@ -30,7 +32,7 @@ class especialista(models.Model):
 
 class medico(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='medico')
-    Numero_doc=models.PositiveIntegerField()
+    Numero_doc=models.IntegerField(unique=True, validators=[MinValueValidator(1)])
     telefono=models.PositiveIntegerField()
     tipo_doc = models.ForeignKey(tipo_doc, on_delete=models.CASCADE)
     especialista=models.ForeignKey(especialista,on_delete=models.CASCADE)
