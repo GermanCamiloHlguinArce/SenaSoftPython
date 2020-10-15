@@ -33,7 +33,7 @@ class medico(models.Model):
     especialista=models.ForeignKey(especialista,on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {} {}'.format(self.numero_doc, self.user.first_name, self.user.last_name)
+        return '{}'.format(self.numero_doc)
 
 
     class Meta:
@@ -51,7 +51,7 @@ class pacientes(models.Model):
     tipo_doc=models.ForeignKey(tipo_doc, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {} {}'.format(self.num_doc, self.user.first_name, self.user.last_name)
+        return '{}'.format(self.num_doc)
 
     class Meta:
         verbose_name = 'Paciente'
@@ -64,7 +64,7 @@ class grupo_familiar(models.Model):
     medico=models.ForeignKey(medico,on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.medico)
+        return self.medico
 
     
     class Meta:
@@ -91,7 +91,7 @@ class historia_clinica(models.Model):
 
 
 class citas(models.Model):
-    fecha=models.DateField()
+    fecha=models.DateTimeField()
     pacientes=models.ForeignKey(pacientes,on_delete=models.CASCADE)
     medico=models.ForeignKey(medico,on_delete=models.CASCADE)
 
@@ -102,3 +102,13 @@ class citas(models.Model):
     class Meta:
         verbose_name = 'Cita'
         verbose_name_plural = 'Citas'
+
+
+class Room(models.Model):
+    name = models.TextField()
+
+class Message(models.Model):
+    room = models.ForeignKey(Room, related_name='messages',        
+                            on_delete=models.CASCADE)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
