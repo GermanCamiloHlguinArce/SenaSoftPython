@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('editar_historia/<int:pk>',ActualizarHistoria.as_view(),name='editar_historia'),
 
-    path('agregar_historia/',AgregarHistorial.as_view(),name='agregar_historia')
+    path('agregar_historia/',AgregarHistorial.as_view(),name='agregar_historia'),
 
+    path('listar_paciente/',ListarPaciente.as_view(),name='listar_paciente')
 ]

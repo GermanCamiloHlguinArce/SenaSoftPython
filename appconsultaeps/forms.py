@@ -31,3 +31,10 @@ class HistoriaForm(BSModalModelForm):
     class Meta:
         model= historia_clinica
         fields=['incapacidad','pacientes','motivo_consulta','enfermedades_actual','antecedentes','analisis','plan_manejo']
+
+
+
+class GrupoForm(forms.ModelForm):
+    class Meta:
+        model=grupo_familiar
+        fields=['paciente','medico']

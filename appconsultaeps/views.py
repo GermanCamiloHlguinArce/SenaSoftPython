@@ -109,3 +109,13 @@ class AgregarHistorial(BSModalCreateView):
     form_class = HistoriaForm
     template_name = 'appconsultaeps/registro_historial.html'
     success_url = reverse_lazy('listar_historia')
+
+
+class ListarPaciente(CreateView):
+    model = grupo_familiar
+    form_class = GrupoForm
+    template_name = 'appconsultaeps/listar_pacientes.html'
+    success_url = reverse_lazy('listar_pacientes')
+    def form_valid(self, form):
+        form.instance.paciente_titular=self.request.user.id
+        return super().form_valid(form)

@@ -64,7 +64,7 @@ class grupo_familiar(models.Model):
     medico=models.ForeignKey(medico,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.medico
+        return '{}'.format(self.medico)
 
     
     class Meta:
