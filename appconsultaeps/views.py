@@ -12,7 +12,7 @@ from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
 
 #Forms
 
-from .Forms import *
+from .forms import *
 
 from .models import *
 
@@ -20,16 +20,8 @@ from .models import *
 class CrearCitas(CreateView):
     Model = 'Citas'
     template_name = 'appconsultaeps/Citas.html'
-
     form_class=CitasForm
-
-
     success_url = reverse_lazy('login')
-
-
-
-#Models
-from .models import *
 
 
 def user_create(request):
@@ -53,12 +45,13 @@ def user_create(request):
 def paciente_create(request, id):
     user = User.objects.get(pk=id)
     if request.method == 'POST':
+        num_doc = request.POST.get('num_doc')
         edad = request.POST.get('edad')
         peso = request.POST.get('peso')
         estatura = request.POST.get('estatura')
         estado_civil = request.POST.get('estado_civil')
         doc = tipo_doc.objects.get(pk=request.POST.get('tipo_doc'))
-        paciente = pacientes.objects.create(user=user, edad=edad, peso=peso, estatura=estatura, estado_civil=estado_civil, tipo_doc=doc)
+        paciente = pacientes.objects.create(user=user, edad=edad, peso=peso, estatura=estatura, estado_civil=estado_civil, tipo_doc=doc, num_doc=num_doc)
         if paciente:
             return redirect('home')
     return render(request, 'appconsultaeps/user_form.html', {'form': PacienteForm})
@@ -68,11 +61,11 @@ def medico_create(request, id):
     user = User.objects.get(pk=id)
     if request.method == 'POST':
         doc = tipo_doc.objects.get(pk=request.POST.get('tipo_doc'))
-        Numero_doc = request.POST.get('Numero_doc')
+        Numero_doc = request.POST.get('numero_doc')
         telefono = request.POST.get('telefono')
         especialist = especialista.objects.get(pk=request.POST.get('especialista'))
         
-        medico_create = medico.objects.create(user=user, tipo_doc=doc, Numero_doc=Numero_doc, telefono=telefono, especialista=especialist)
+        medico_create = medico.objects.create(user=user, tipo_doc=doc, numero_doc=Numero_doc, telefono=telefono, especialista=especialist)
         if medico_create:
             return redirect('home')
     return render(request, 'appconsultaeps/user_form.html', {'form': MedicoForm})

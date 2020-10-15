@@ -43,6 +43,14 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          {{ request.user }}
+          <select name="" id="">
+            <option value="">@</option>
+            <option value="">@</option>
+            <option value="">@</option>
+            <option value="">@</option>
+            <option value="">@</option>
+          </select>
           {% block content %}
              <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                     <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" name="fecha"/>
