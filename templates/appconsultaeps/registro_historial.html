@@ -12,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>HISTORIAL CLINICO- MEDICINA DIGITAL</title>
+  <title>HOME - MEDICINA DIGITAL</title>
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -43,49 +43,11 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           {% block content %}
+             {{ form.as_p }}
+
+            <input type="submit">
 
 
-          {% if historias %}
-<table class="table table-striped">
-	<thead >
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">incapacidad</th>
-			<th scope="col">motivo de la consulta</th>
-			<th scope="col">enfermedades actuales</th>
-			<th scope="col">antecedentes</th>
-			<th scope="col">analisis</th>
-            <th scope="col">plan de manejo</th>
-            <th scope="col">operaciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for historia in historias%}
-		<tr>
-			<td>{{historia.id}}</td>
-			<td>{{historia.incapacidad}}</td>
-			<td>{{historia.motivo_consulta}}</td>
-			<td>{{historia.enfermedades_actual}}</td>
-			<td>{{historia.antecedentes}}</td>
-            <td>{{historia.analisis}}</td>
-            <td>{{historia.plan_manejo}}</td>
-			<td>
-			<button onclick="abrir_modal_edicion()" type="button" class="btn btn-primary">editar</button>
-				
-			</td>
-		</tr>
-		{%endfor%}
-
-	</tbody>
-
-</table>
-{%else%}
-          <h1>No existe historial</h1>
-{%endif%}
-
-<div class="modal fade" id="edicion" role="dialog">
-
-</div>
           {% endblock content %}
         </div>
         <!-- /.container-fluid -->
@@ -125,14 +87,6 @@
   <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
   <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
   {% block js %}
-  <script type="text/javascript">
-      var $=Jquery.noConflict();
-      function abrir_modal_edition(url){
-        $('#edicion').load(url, function(){
-            $(this).modal.show();
-            });
-
-  </script>
   {% endblock js %}
 
 </body>
