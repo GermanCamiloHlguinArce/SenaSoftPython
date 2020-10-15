@@ -65,9 +65,10 @@ class ActualizarHistoria(UpdateView):
 	model=historia_clinica
 	template_name='appconsultaeps/historia.html'
 	form_class= HistoriaForm
-	success_url= reverse_lazy('appconsultaeps:listar_historia')
+	success_url= reverse_lazy('listar_historia')
 
 class AgregarHistorial(CreateView):
     model = historia_clinica
     form_class = HistoriaForm
     template_name = 'appconsultaeps/registro_historial.html'
+    success_url = reverse_lazy('listar_historia')

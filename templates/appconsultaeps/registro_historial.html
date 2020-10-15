@@ -42,11 +42,13 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        <Form method="post">
           {% block content %}
+          {% csrf_token %}
              {{ form.as_p }}
 
             <input type="submit">
-
+      </Form>
 
           {% endblock content %}
         </div>

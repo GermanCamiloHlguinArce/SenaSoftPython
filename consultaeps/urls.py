@@ -14,6 +14,5 @@ urlpatterns = [
 
     path('app/',include('appconsultaeps.urls')),
 
-    path('app/',include('appconsultaeps.urls')),
 
 ]

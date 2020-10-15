@@ -24,4 +24,4 @@ class PacienteForm(forms.ModelForm):
 class HistoriaForm(forms.ModelForm):
     class Meta:
         model= historia_clinica
-        fields=['incapacidad','motivo_consulta','enfermedades_actual','antecedentes','analisis','plan_manejo']
+        fields=['incapacidad','pacientes','motivo_consulta','enfermedades_actual','antecedentes','analisis','plan_manejo']
