@@ -73,8 +73,6 @@ class grupo_familiar(models.Model):
 
 
 
-
-
 class historia_clinica(models.Model):
     incapacidad=models.CharField(max_length=50,null=True,blank=True)
     pacientes=models.ForeignKey(pacientes,on_delete=models.CASCADE)
@@ -92,13 +90,6 @@ class historia_clinica(models.Model):
         verbose_name_plural = 'Historias clinicas'
 
 
-
-
-
-
-
-
-
 class citas(models.Model):
     fecha=models.DateTimeField()
     pacientes=models.ForeignKey(pacientes,on_delete=models.CASCADE)
@@ -111,7 +102,3 @@ class citas(models.Model):
     class Meta:
         verbose_name = 'Cita'
         verbose_name_plural = 'Citas'
-
-
-
-
