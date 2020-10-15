@@ -1,21 +1,20 @@
 #django
 from django.shortcuts import render
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
+
+
 from django.views.generic import FormView
 from django.urls import reverse_lazy
 
 #Forms
-<<<<<<< Updated upstream
-from .forms import *
+
+from .Forms import *
 
 from .models import *
 
-=======
-from .forms import PacienteForm
->>>>>>> Stashed changes
+
+from .Forms import PacienteForm
+
 
 from django.contrib.auth.views import LoginView
 from django.views.generic import TemplateView,CreateView
@@ -23,25 +22,24 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-<<<<<<< Updated upstream
-=======
+
 from .Forms import CitasForm
->>>>>>> Stashed changes
+
 
 class CrearCitas(CreateView):
     Model = 'Citas'
     template_name = 'appconsultaeps/Citas.html'
-<<<<<<< Updated upstream
+
     form_class=CitasForm
-=======
-    form_class= CitasForm
-    success_url = reverse_lazy('index')
+
+
+    success_url = reverse_lazy('login')
 
 
 
 #Models
 from .models import pacientes
->>>>>>> Stashed changes
+
 
 
 class PacienteCreate(FormView):

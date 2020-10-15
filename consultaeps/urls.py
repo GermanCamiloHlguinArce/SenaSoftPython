@@ -11,9 +11,9 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('', HomeView.as_view(), name='home'),
-<<<<<<< Updated upstream
-    path('app/',include('appconsultaeps.urls'))
-=======
+
     path('app/',include('appconsultaeps.urls')),
->>>>>>> Stashed changes
+
+    path('app/',include('appconsultaeps.urls')),
+
 ]
