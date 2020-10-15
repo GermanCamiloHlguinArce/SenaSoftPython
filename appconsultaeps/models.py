@@ -33,7 +33,7 @@ class medico(models.Model):
     especialista=models.ForeignKey(especialista,on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.numero_doc)
+        return '{} - {} {}'.format(self.numero_doc, self.user.first_name, self.user.last_name)
 
 
     class Meta:
@@ -51,7 +51,7 @@ class pacientes(models.Model):
     tipo_doc=models.ForeignKey(tipo_doc, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{}'.format(self.num_doc)
+        return '{} - {} {}'.format(self.num_doc, self.user.first_name, self.user.last_name)
 
     class Meta:
         verbose_name = 'Paciente'
@@ -91,7 +91,7 @@ class historia_clinica(models.Model):
 
 
 class citas(models.Model):
-    fecha=models.DateTimeField()
+    fecha=models.DateField()
     pacientes=models.ForeignKey(pacientes,on_delete=models.CASCADE)
     medico=models.ForeignKey(medico,on_delete=models.CASCADE)
 

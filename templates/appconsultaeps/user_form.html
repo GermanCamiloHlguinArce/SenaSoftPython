@@ -19,6 +19,11 @@
 
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <style>
+    .asteriskField {
+        display: none;
+    }
+  </style>
 
 </head>
 
@@ -41,15 +46,42 @@
                   </div>
                   <form class="user" method="POST">
                     {% csrf_token %}
-                    {% for field in form %}
-                        {{ field|as_crispy_field }}<br>
-                        {% if field.errors  %}
-                          {% for error in field.errors %}
-                              {{ error|escape }}
-                          {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                    
+                    <div class="row">
+                      <div class="col">
+                          <div class="form-group{% if field.errors %} invalid{% endif %}">
+                              {{ form.first_name|as_crispy_field }}
+                          </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group{% if field.errors %} invalid{% endif %}">
+                            {{ form.last_name|as_crispy_field }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group{% if field.errors %} invalid{% endif %}">
+                            {{ form.username|as_crispy_field }}
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group{% if field.errors %} invalid{% endif %}">
+                            {{ form.password1|as_crispy_field }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group{% if field.errors %} invalid{% endif %}">
+                            {{ form.password2|as_crispy_field }}
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-group{% if field.errors %} invalid{% endif %}">
+                            {{ form.tipo_usuario|as_crispy_field }}
+                        </div>
+                      </div>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block rounded-0">Enviar</button>
                   </form>
                   <hr>

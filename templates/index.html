@@ -21,8 +21,14 @@
 
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <style>
+    .asteriskField {
+      display: none;
+    }
+  </style>
 
-</head> 
+</head>
 
 <body id="page-top">
 
@@ -81,13 +87,19 @@
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
   <!-- Page level plugins -->
-  <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
-  <script src="{% static 'js/jquery.bootstrap.modal.forms' %}"></script>
-  <script src="{% static 'js/jquery.bootstrap.modal.forms.min' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+      $(function () {
+        $('#datetimepicker').datepicker({
+          dateFormat: "yy-mm-dd"
+        });
+        
+    });
+  </script>
   {% block js %}
   {% endblock js %}
 

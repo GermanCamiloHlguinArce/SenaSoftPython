@@ -17,11 +17,20 @@ from .forms import *
 from .models import *
 
 
+
+class CitasView(ListView):
+    model = citas
+    template_name = 'appconsultaeps/citas_list.html'
+    context_object_name = 'citas'
+
+
 class CrearCitas(CreateView):
-    Model = 'Citas'
+    Model = citas
     template_name = 'appconsultaeps/Citas.html'
-    form_class=CitasForm
-    success_url = reverse_lazy('login')
+    form_class= CitasForm
+    success_url = reverse_lazy('listar_citas')
+    success_message = 'Cita creada exitosamente!'
+
 
 
 def user_create(request):

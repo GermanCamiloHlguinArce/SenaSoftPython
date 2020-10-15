@@ -9,6 +9,7 @@ urlpatterns = [
     path('paciente/create/<int:id>', paciente_create, name='paciente_create'),
     path('medico/create/<int:id>', medico_create, name='medico_create'),
 
+    path('citas/', CitasView.as_view(),name='listar_citas'),
     path('crear_citas/',CrearCitas.as_view(),name='crear_citas'),
 
     path('listar_historia/',ListarHistoria.as_view(),name='listar_historia'),
