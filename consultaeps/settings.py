@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appconsultaeps',
-    'crispy_forms',
+    'bootstrap_modal_forms',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ DATABASES = {
         'NAME': 'prueba',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'HOST': 'ec2-52-21-37-108.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -120,6 +121,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTHENTICATION_BACKENDS = ('consultaeps.backends.EmailBackend',)
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
