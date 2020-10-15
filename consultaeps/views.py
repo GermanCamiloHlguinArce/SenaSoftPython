@@ -1,11 +1,12 @@
 #Django
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,CreateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 
 class LoginView(LoginView):
@@ -23,7 +24,5 @@ class HomeView(LoginRequiredMixin, TemplateView):
     template_name = 'index.html'
 
 
-    
-class CrearCitas(TemplateView):
-    template_name = 'SenaSoftPython/Citas.html'
+
 

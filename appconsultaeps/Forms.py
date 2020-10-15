@@ -1,7 +1,5 @@
 from django.views.generic import FormView
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from bootstrap_modal_forms.forms import BSModalModelForm
 
 
@@ -28,23 +26,6 @@ class PacienteForm(forms.ModelForm):
     class Meta:
         model = pacientes
         fields = '__all__'
-        exclude = ['user']
-
-
-class MedicoForm(forms.ModelForm):
-    class Meta:
-        model = medico
-        fields = '__all__'
-        exclude = ['user']
-
-
-class UserCreationForm(UserCreationForm):
-    Users = [
-        ('M', 'Medico'),
-        ('P', 'Paciente')
-    ]
-    tipo_usuario = forms.ChoiceField(required=True, choices=Users)
-
 
 class HistoriaForm(BSModalModelForm):
     class Meta:

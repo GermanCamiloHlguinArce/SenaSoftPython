@@ -1,4 +1,6 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>HISTORIAL CLINICO- MEDICINA DIGITAL</title>
 
   <!-- Custom fonts for this template-->
   <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -40,37 +42,48 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          {% block content %}
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Crear Cita</h1>
+        <button id="create-historia" class="btn btn-primary" type="button" name="button">Crear historial</button>
+          {% if historias %}
+<table class="table table-striped">
+	<thead >
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">incapacidad</th>
+			<th scope="col">motivo de la consulta</th>
+			<th scope="col">enfermedades actuales</th>
+			<th scope="col">antecedentes</th>
+			<th scope="col">analisis</th>
+            <th scope="col">plan de manejo</th>
+            <th scope="col">operaciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for historia in historias%}
+		<tr>
+			<td>{{historia.id}}</td>
+			<td>{{historia.incapacidad}}</td>
+			<td>{{historia.motivo_consulta}}</td>
+			<td>{{historia.enfermedades_actual}}</td>
+			<td>{{historia.antecedentes}}</td>
+            <td>{{historia.analisis}}</td>
+            <td>{{historia.plan_manejo}}</td>
+			<td>
+			<button type="button" class="update-historia btn btn-primary" data-id="{% url 'editar_historia' historia.id %}">editar</button>
+				
+			</td>
+		</tr>
+		{%endfor%}
 
-          </div>
+	</tbody>
 
-          <!-- Content Row -->
-          <div class="row">
+</table>
+{%else%}
+          <h1>No existe historial</h1>
+{%endif%}
 
+<div class="modal fade" id="edicion" role="dialog">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-          {% endblock content %}
+</div>
         </div>
         <!-- /.container-fluid -->
 
@@ -91,7 +104,11 @@
   </a>
 
 
-
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -103,12 +120,21 @@
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
   <!-- Page level plugins -->
-  <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-
   <!-- Page level custom scripts -->
-  <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
   {% block js %}
+  <script type="text/javascript">
+      $(document).ready(function() {
+            $("#create-historia").modalForm({
+                formURL: "{% url 'agregar_historia' %}"
+            });
+             $(".update-historia").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+             });
+
+        });
+  </script>
   {% endblock js %}
 
 </body>

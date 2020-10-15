@@ -1,16 +1,32 @@
 #django
 
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import *
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
 
 #Forms
-from .forms import *
+
+from .Forms import *
+
+from .models import *
+
+
+class CrearCitas(CreateView):
+    Model = 'Citas'
+    template_name = 'appconsultaeps/Citas.html'
+
+    form_class=CitasForm
+
+
+    success_url = reverse_lazy('login')
+
+
 
 #Models
 from .models import *
@@ -60,3 +76,34 @@ def medico_create(request, id):
         if medico_create:
             return redirect('home')
     return render(request, 'appconsultaeps/user_form.html', {'form': MedicoForm})
+
+class PacienteCreate(FormView):
+    model = pacientes
+    form_class = PacienteForm
+    template_name = 'appconsultaeps/paciente_form.html'
+    success_message = 'Cuenta creada exitosamente!'
+    success_url = reverse_lazy('login')
+
+
+class CrearMedico(CreateView):
+    model= medico
+    form_class = registro_medicoForm
+    template_name = 'registro_medico.html'
+
+
+class ListarHistoria(ListView):
+    model = historia_clinica
+    template_name = 'appconsultaeps/listar_historia.html'
+    context_object_name = 'historias'
+
+class ActualizarHistoria(BSModalUpdateView):
+	model=historia_clinica
+	template_name='appconsultaeps/registro_historial.html'
+	form_class= HistoriaForm
+	success_url= reverse_lazy('listar_historia')
+
+class AgregarHistorial(BSModalCreateView):
+    model = historia_clinica
+    form_class = HistoriaForm
+    template_name = 'appconsultaeps/registro_historial.html'
+    success_url = reverse_lazy('listar_historia')
