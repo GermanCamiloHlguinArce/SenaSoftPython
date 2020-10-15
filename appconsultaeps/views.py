@@ -23,6 +23,8 @@ from django.views.decorators.cache import never_cache
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalUpdateView
+
 from .Forms import CitasForm
 
 
@@ -61,13 +63,13 @@ class ListarHistoria(ListView):
     template_name = 'appconsultaeps/listar_historia.html'
     context_object_name = 'historias'
 
-class ActualizarHistoria(UpdateView):
+class ActualizarHistoria(BSModalUpdateView):
 	model=historia_clinica
-	template_name='appconsultaeps/historia.html'
+	template_name='appconsultaeps/registro_historial.html'
 	form_class= HistoriaForm
 	success_url= reverse_lazy('listar_historia')
 
-class AgregarHistorial(CreateView):
+class AgregarHistorial(BSModalCreateView):
     model = historia_clinica
     form_class = HistoriaForm
     template_name = 'appconsultaeps/registro_historial.html'

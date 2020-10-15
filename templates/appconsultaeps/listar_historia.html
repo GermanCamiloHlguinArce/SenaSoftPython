@@ -42,9 +42,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          {% block content %}
-
-
+        <button id="create-historia" class="btn btn-primary" type="button" name="button">Crear historial</button>
           {% if historias %}
 <table class="table table-striped">
 	<thead >
@@ -70,7 +68,7 @@
             <td>{{historia.analisis}}</td>
             <td>{{historia.plan_manejo}}</td>
 			<td>
-			<button onclick="abrir_modal_edicion()" type="button" class="btn btn-primary">editar</button>
+			<button type="button" class="update-historia btn btn-primary" data-id="{% url 'editar_historia' historia.id %}">editar</button>
 				
 			</td>
 		</tr>
@@ -86,7 +84,6 @@
 <div class="modal fade" id="edicion" role="dialog">
 
 </div>
-          {% endblock content %}
         </div>
         <!-- /.container-fluid -->
 
@@ -107,7 +104,11 @@
   </a>
 
 
-
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -119,19 +120,20 @@
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
   <!-- Page level plugins -->
-  <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-
   <!-- Page level custom scripts -->
-  <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-  <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+  <script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
   {% block js %}
   <script type="text/javascript">
-      var $=Jquery.noConflict();
-      function abrir_modal_edition(url){
-        $('#edicion').load(url, function(){
-            $(this).modal.show();
+      $(document).ready(function() {
+            $("#create-historia").modalForm({
+                formURL: "{% url 'agregar_historia' %}"
             });
+             $(".update-historia").each(function () {
+                $(this).modalForm({formURL: $(this).data('id')});
+             });
 
+        });
   </script>
   {% endblock js %}
 

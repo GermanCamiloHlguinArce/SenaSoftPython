@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User
+from datetime import datetime
 
 
 class tipo_doc (models.Model):
@@ -49,7 +50,7 @@ class medico(models.Model):
 
 
 class citas(models.Model):
-    fecha=models.DateTimeField()
+    fecha=models.DateTimeField(default=datetime.now())
     pacientes=models.ForeignKey(pacientes,on_delete=models.CASCADE)
     medico=models.ForeignKey(medico,on_delete=models.CASCADE)
 

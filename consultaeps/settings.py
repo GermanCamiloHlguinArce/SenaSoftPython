@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appconsultaeps',
+    'bootstrap_modal_forms',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -119,6 +121,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTHENTICATION_BACKENDS = ('consultaeps.backends.EmailBackend',)
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
